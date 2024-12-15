@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block maincontent %}
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div id="sidebar"
+            class="fixed left-0 top-0 h-full w-[18rem] bg-black text-white font-bold transform -translate-x-full md:translate-x-0 transition-transform duration-300">
+            <div class="mt-4 px-4">
+                <h1 class="text-xl truncate">Welcome! {{g.user.name}}</h1>
+            </div>
+
+            <ul class="mt-8 space-y-2 text-center p-2">
+                <li class="px-4 py-2 hover:bg-white hover:text-black rounded-md">
+                    <a href="{{url_for("index.dashboard")}}">Dashboard</a>
+                </li>
+                <li class="px-4 py-2 hover:bg-white hover:text-black rounded-md">
+                    <a href="{{url_for("student.student_dashboard")}}">Student</a>
+                </li>
+                <li class="px-4 py-2 hover:bg-white hover:text-black rounded-md">
+                    <a href="{{url_for("staff.staff_dashboard")}}">Staff</a>
+                </li>
+                <li class="px-4 py-2 hover:bg-white hover:text-black rounded-md">
+                    <a href="{{url_for("user.user_dashboard")}}">User</a>
+                </li>
+                <li class="px-4 py-2 hover:bg-white hover:text-black rounded-md">
+                    <a href="{{url_for("dept.department")}}">Department</a>
+                </li>
+
+            </ul>
+            <div class="hover:bg-gray-100 fixed bottom-3 left-24 bg-gray-300 text-black px-4 py-2 rounded-md">
+                <a href="{{url_for('login.logout')}}">Logout</a>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 ml-0 md:ml-[18rem]">
+            <!-- Navbar -->
+            <header class="sticky top-0 z-10 bg-black text-white flex justify-between p-4 items-center">
+                <!--<div class="font-bold text-lg">Responsive Dashboard</div> -->
+                <div class="flex justify-center w-max">
+                <form class="flex items-center space-x-2">
+                    <!-- Input Field -->
+                    <input
+                    type="text"
+                    placeholder="Search..."
+                    class="px-2 py-2 sm:w-96 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                    <!-- Search Button -->
+                    <button
+                    type="submit"
+                    class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                    >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menuToggle" class="text-white border-2 rounded-md px-2 py-1 hover:bg-white hover:text-black">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="p-4">
+                {% block content %}{% endblock content %}
+            </main>
+        </div>
+    </div>
+
+    </section>
+    <script>
+        // Sidebar Toggle for Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+        const submenu=document.getElementById("submenu");
+        const togglesub=document.getElementById("#togglesub");
+        togglesub.addEventListener("click",()=>{
+           // submenu.classList.toggle('hidden');
+           alert("hii");
+        })
+    </script>
+{% endblock maincontent %}

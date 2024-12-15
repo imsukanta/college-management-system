@@ -1,0 +1,42 @@
+{% extends "dashboard.html" %}
+{% block title %}User{% endblock title %}
+{% block content %}
+<div class="container md:w-[25rem] md:mx-[18rem] mt-8">
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                Name
+            </label>
+            <input value="{{user.name}}" name="name" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Enter the name of department.." />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                Email
+            </label>
+            <input value="{{user.email}}" name="email" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="Email" placeholder="Enter the head of department.." />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="depttype">
+                User Type*
+            </label>
+            <select name="user_types" id="user_types" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="{{user.user_type}}">{{user.user_type}}</option>
+                <option value="admin">Admin</option>
+                <option value="staff">Staff</option>
+                <option value="finance">Finance</option>
+            </select>
+        </div>
+                <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmation">
+                Confirmation
+            </label>
+            <input {% if user.is_active %}checked {% else %} {% endif %} name="confirmation" id="confirmation" value="true" type="checkbox" class="mr-2 leading-tight" />
+            <span class="text-gray-700 text-sm">Is active?</span>
+        </div>
+        <div class="text-center px-2 py-1 bg-blue-900 text-white rounded-md hover:bg-blue-950">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
