@@ -1,0 +1,55 @@
+{% extends "teacher_base.html" %}
+{% block title %}Student Details{% endblock title %}
+{% block teachercontent %}
+<div class="container mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Student Table</h1>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow">
+        <thead>
+          <tr class="bg-gray-50 border-b">
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">ID</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Makaut Roll No</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">First Name</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Last Name</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Date of Birth</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Gender</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Contact Number</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Email</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Nationality</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Emergency Contact Name</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Emergency Contact Number</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Previous Qualifications</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Department ID</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Admission Date</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Passout Date</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Mode of Admission</th>
+            <th class="text-left px-6 py-3 text-gray-600 font-semibold">Library Access</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for student in student %}
+          <tr class="border-b">
+            <td class="px-6 py-4 text-gray-800">{{student.id}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.makaut_roll_no}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.first_name}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.last_name}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.date_of_birth}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.gender}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.contact_number}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.email}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.nationlity}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.emergency_contact_name}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.emergency_contact_number}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.previous_qualifications}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.department.dept_name}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.admission_date}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.passout_date}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.mode_of_admission}}</td>
+            <td class="px-6 py-4 text-gray-800">{{student.access_of_library}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock teachercontent %}

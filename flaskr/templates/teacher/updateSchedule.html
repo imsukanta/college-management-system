@@ -1,0 +1,80 @@
+{% extends "teacher_base.html" %}
+{% block title %}Update Schedule{% endblock title %}
+{% block teachercontent %}
+ <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Edit Schedule</span></h1>
+        <form action="#" method="POST" class="grid gap-4 md:grid-cols-2">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Day</label>
+                <select id="day" name="day" required
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="{{schedule.day}}">{{schedule.day}}</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Semester</label>
+                <select id="semester" name="semester" required
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="{{schedule.semester.sem}}">{{schedule.semester.name}}</option>
+                    {% for sem in sem %}
+                    <option value="{{sem.sem}}">{{sem.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Staff</label>
+                <select id="staff" name="staff" required
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="{{schedule.staff.staff_id}}">{{schedule.staff.name}}</option>
+                    {% for staff in staff %}
+                    <option value="{{staff.staff_id}}">{{staff.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Course</label>
+                <select id="course" name="course" required
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="{{schedule.course.id}}">{{schedule.course.course_name}}</option>
+                    {% for course in course %}
+                    <option value="{{course.id}}">{{course.course_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm text-gray-700 font-medium mb-2">Select Course(24 hours)</label>
+                <div class="space-y-3">
+                <input placeholder="Hrs" type="number" id="hrs" name="hrs" maxlength="150" required
+                       class="mt-1 block w-[10rem] p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="space-y-3">
+                <input placeholder="Min" type="number" id="min" name="min" maxlength="150" required
+                       class="mt-1 block w-[10rem] p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+            </div>
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmation">
+                Confirmation
+            </label>
+            <input {% if schedule.is_active  %}checked {% else %}{% endif %} name="confirmation" id="confirmation" value="true" type="checkbox" class="mr-2 leading-tight" />
+            <span class="text-gray-700 text-sm">Is active?</span>
+        </div>
+            <!-- Submit Button -->
+            <div class="md:col-span-2 flex justify-end">
+                <button type="submit"
+                        class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock teachercontent %}

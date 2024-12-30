@@ -1,0 +1,124 @@
+{% extends "dashboard.html" %}
+{% block title %}
+Student Profile
+{% endblock title %}
+{% block content %}
+  <!-- Header -->
+
+  <!-- Profile Container -->
+  <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-4">
+    <div class="flex justify-between items-center">
+      <!-- Student Info -->
+      <div class="flex items-center space-x-4">
+        <img
+          src="{{ student.profile_picture or 'https://via.placeholder.com/100' }}"
+          alt="Profile Picture"
+          class="w-20 h-20 rounded-full shadow"
+        />
+        <div>
+          <h2 class="text-xl font-bold text-gray-800">{{ student.first_name }} {{ student.last_name }}</h2>
+          <p class="text-sm text-gray-500">{{ student.makaut_roll_no }}</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-x-2">
+        <a
+          href="{{url_for('student.update_profile',id=student.id)}}"
+          class="px-4 py-2 bg-blue-600 text-white rounded shadow hover:bg-blue-700"
+        >
+          Edit
+        </a>
+        <a
+          href="{{url_for('student.delete_profile',id=student.id)}}"
+          class="px-4 py-2 bg-red-600 text-white rounded shadow hover:bg-red-700"
+          onclick="return confirm('Are you sure you want to delete this student?');"
+        >
+          Delete
+        </a>
+      </div>
+    </div>
+
+    <!-- Profile Details -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800">Basic Information</h3>
+        <ul class="mt-2 space-y-2">
+          <li><strong>Date of Birth:</strong> {{ student.date_of_birth }}</li>
+          <li><strong>Gender:</strong> {{ student.gender }}</li>
+          <li><strong>Nationality:</strong> {{ student.nationality }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800">Contact Information</h3>
+        <ul class="mt-2 space-y-2">
+          <li><strong>Email:</strong> {{student.fees[0].total_fees}} </li>
+          <li><strong>Contact Number:</strong> {{student.fees[0].fees_due}}</li>
+          <li><strong>Emergency Contact:</strong> </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800">Address</h3>
+        <ul class="mt-2 space-y-2">
+          <li><strong>Current Address:</strong> </li>
+          <li><strong>Permanent Address:</strong> </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800">Academic Details</h3>
+        <ul class="mt-2 space-y-2">
+          <li><strong>Department:</strong> </li>
+          <li><strong>Mode of Admission:</strong> </li>
+          <li><strong>Current Year:</strong> </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800">Other Details</h3>
+        <ul class="mt-2 space-y-2">
+          <li><strong>Library Access:</strong> </li>
+          <li><strong>Status:</strong> </li>
+          <li><strong>Course Duration:</strong>  years</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Payment and Results -->
+    <div class="mt-8">
+      <h3 class="text-lg font-semibold text-gray-800">Manage Payments and Results</h3>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Payment Management -->
+        <div class="p-4 bg-gray-50 rounded shadow">
+          <h4 class="font-semibold text-gray-800">Payment Details</h4>
+          <p class="text-sm text-gray-500 mt-2">
+            View and update fee payment records for this student.
+          </p>
+          <a
+            href="{{url_for('student.show_payment',id=student.id)}}"
+            class="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded shadow hover:bg-green-700"
+          >
+            Manage Payments
+          </a>
+        </div>
+
+        <!-- Results Management -->
+        <div class="p-4 bg-gray-50 rounded shadow">
+          <h4 class="font-semibold text-gray-800">Results</h4>
+          <p class="text-sm text-gray-500 mt-2">
+            View, edit, and publish semester results for this student.
+          </p>
+          <a
+            href=""
+            class="mt-4 inline-block bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700"
+          >
+            Manage Results
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

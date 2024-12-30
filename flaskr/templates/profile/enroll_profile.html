@@ -1,0 +1,51 @@
+{% extends "dashboard.html" %}
+{% block title %}
+Student Profile
+{% endblock title %}
+{% block content %}
+  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg">
+    <div class="flex space-x-2 justify-end">
+        <a href="{{url_for('enrollment.edit_enroll',id=enroll.id)}}" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500" href="">Edit</a>
+        <a href="{{url_for('enrollment.delete_enroll',id=enroll.id)}}" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500" href="">Delete</a>
+    </div>
+    
+    <!-- Profile Table -->
+    <div class="mt-6 overflow-x-auto">
+      <table class="min-w-full table-auto border-collapse border border-gray-200">
+        <tbody>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Name</th>
+            <td class="px-6 py-3 text-gray-800">{{enroll.student.first_name}} {{enroll.student.last_name}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Session</th>
+            <td class="px-6 py-3 text-gray-800">{{enroll.semester.session.name}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Semester</th>
+            <td class="px-6 py-3 text-gray-800">{{enroll.semester.name}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">course</th>
+            <td class="px-6 py-3 text-gray-800">
+                <tbody>
+                    {% for course in enroll.course %}
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <td class="px-6 py-3 text-gray-800">{{course.course_name}}</td>
+          </tr>    
+          {% endfor %}              
+                </tbody>
+                </td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Create At</th>
+            <td class="px-6 py-3 text-gray-800">{{enroll.enrollment_date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Actions Section -->
+
+  </div>
+{% endblock content %}

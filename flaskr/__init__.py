@@ -26,10 +26,26 @@ def create_app():
     from . import user
     from . import dept
     from . import staff
+    from . import studentIndex
+    from . import sessionyear
+    from . import student_login
+    from . import teacher_login
+    from . import teacher_dashboard
+    from . import course
+    from . import enrollment
+    from . import schedule
+    app.register_blueprint(schedule.bp)
+    app.register_blueprint(enrollment.bp)
+    app.register_blueprint(course.bp)
+    app.register_blueprint(teacher_dashboard.bp)
+    app.register_blueprint(teacher_login.bp)
     app.register_blueprint(dept.bp)
     app.register_blueprint(index.bp)
     app.register_blueprint(login.bp)
     app.register_blueprint(student.bp)
     app.register_blueprint(user.bp)
     app.register_blueprint(staff.bp)
+    app.register_blueprint(studentIndex.bp)
+    app.register_blueprint(sessionyear.bp)
+    app.register_blueprint(student_login.bp)
     return app

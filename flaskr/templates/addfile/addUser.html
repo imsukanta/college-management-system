@@ -2,7 +2,7 @@
 {% block title %}User{% endblock title %}
 {% block content %}
 <div class="container md:w-[25rem] md:mx-[18rem] mt-8">
-    <form method="post">
+    <form method="post" >
         <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">

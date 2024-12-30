@@ -15,7 +15,7 @@
             {% with messages=get_flashed_messages(with_categories=True) %}
 {% if messages %}
       {% for category,message in messages %}
-        <div id="alertBox" class="fixed md:bottom-[1rem] md:right-[20rem] bottom-[1rem] left-8 flex items-center justify-between bg-blue-500 text-white px-4 py-3 rounded-md shadow-md w-96">
+        <div id="alertBox" class="fixed md:bottom-[1rem] md:right-[20rem] bottom-[1rem] left-[2rem] flex items-center justify-between bg-blue-500 text-white px-4 py-3 rounded-md shadow-md w-80 ">
         <div>
             <p class="text-sm">{{message}}</p>
         </div>
@@ -36,6 +36,7 @@
             alertBox.style.display = 'none';
         });
 </script>
+
 </body>
 
 </html>

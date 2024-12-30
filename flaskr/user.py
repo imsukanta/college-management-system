@@ -8,14 +8,13 @@ bp=Blueprint("user",__name__,url_prefix="/user")
 @bp.route("/")
 @login_required('admin','staff')
 def user_dashboard():
-    try:
-        users=db.session.execute(db.select(User)).scalars()
-    except:
-        flash("Sorry data cannot fetch")
+    page=request.args.get('page',1,type=int)
+    per_page=10
+    users=User.query.paginate(page=page,per_page=per_page)
     return render_template("user.html",users=users)
 
 @bp.route("/add-user",methods=["GET","POST"])
-@login_required('admin')
+# @login_required('admin')
 def add_user():
     if request.method=="POST":
         # print(request.form)

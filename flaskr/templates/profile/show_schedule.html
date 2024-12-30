@@ -1,0 +1,45 @@
+{% extends "dashboard.html" %}
+{% block title %}
+Schedule Profile
+{% endblock title %}
+{% block content %}
+  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg">
+    <div class="flex space-x-2 justify-end">
+        <a class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500" href="{{url_for('schedule.edit_schedule',id=schedule.id)}}">Edit</a>
+        <a href="{{url_for('schedule.delete_schedule',id=schedule.id)}}" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500" >Delete</a>
+    </div>
+    
+    <!-- Profile Table -->
+    <div class="mt-6 overflow-x-auto">
+      <table class="min-w-full table-auto border-collapse border border-gray-200">
+        <tbody>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Name(Status)</th>
+            <td class="px-6 py-3 text-gray-800">{{schedule.staff.name}}({{schedule.is_active}})</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Session(Semester)</th>
+            <td class="px-6 py-3 text-gray-800">{{schedule.semester.session.name}}({{schedule.semester.name}})</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Day(Time)</th>
+            <td class="px-6 py-3 text-gray-800">{{schedule.day}}({{schedule.start_time}})</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">course</th>
+            <td class="px-6 py-3 text-gray-800">
+               {{schedule.course.course_name}} </td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Department</th>
+            <td class="px-6 py-3 text-gray-800">{{schedule.department.dept_name}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Actions Section -->
+
+  </div>
+{% endblock content %}

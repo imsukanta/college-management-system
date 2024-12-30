@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Admin Login{% endblock title %}
+{% block maincontent %}
+    <section class="p-2">
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+      <div class="md:w-[20rem] relative top-[10rem] md:left-[30rem] text-center p-2 border-2 rounded-md">
+        <div class="cotainer">
+            <span class="text-lg font-bold">Admin Login</span>
+        </div>
+        <div class="user text-lg p-2">
+            <i class="fa-solid fa-user p-2 text-xl rounded-md bg-gray-400"></i>
+          <input name="username" type="text" class="p-1 rounded-md border-2 focus:ring-2 focus:ring-blue-500 focus:border-cyan-200 focus:outline-none" placeholder="Enter Your Username" />
+        </div>
+        <div class="user text-lg p-2">
+            <i class="fa-solid fa-key p-2 text-xl rounded-md bg-gray-400"></i>
+          <input name="password" type="password" class="p-1 rounded-md border-2 focus:ring-2 focus:ring-blue-500 focus:border-cyan-200 focus:outline-none" placeholder="Enter Your Password" />
+        </div>
+        <div class="bg-blue-500 hover:bg-blue-600 hover:radius-2 px-4 py-2 text-white rounded-lg">
+          <button class="font-bold" type="submit" >Submit</button>
+        </div>
+      </div>
+      </form>
+    </section>
+{% endblock maincontent %}

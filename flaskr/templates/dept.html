@@ -32,4 +32,34 @@
             </tbody>
         </table>
     </div>
+<div class="flex justify-center items-center mt-8 space-x-4">
+    <!-- Previous page link -->
+    {% if depts.has_prev %}
+        <a class="px-2 py-1 bg-gray-800 text-white rounded-lg border-2 border-gray-700 hover:bg-gray-700 hover:text-gray-200 transition-colors" 
+           href="{{ url_for('dept.department', page=depts.prev_num) }}">
+            Previous
+        </a>
+    {% else %}
+        <span class="px-2 py-1 bg-gray-300 text-gray-500 rounded-lg border-2 border-gray-200 cursor-not-allowed">
+            Previous
+        </span>
+    {% endif %}
+
+    <!-- Page numbers -->
+    <span class="text-lg font-semibold text-gray-700">
+        Page {{ depts.page }} of {{ depts.pages }}
+    </span>
+
+    <!-- Next page link -->
+    {% if depts.has_next %}
+        <a class="px-2 py-1 bg-gray-800 text-white rounded-lg border-2 border-gray-700 hover:bg-gray-700 hover:text-gray-200 transition-colors" 
+           href="{{ url_for('dept.department', page=depts.next_num) }}">
+            Next
+        </a>
+    {% else %}
+        <span class="px-2 py-1 bg-gray-300 text-gray-500 rounded-lg border-2 border-gray-200 cursor-not-allowed">
+            Next
+        </span>
+    {% endif %}
+</div>
 {% endblock content %}

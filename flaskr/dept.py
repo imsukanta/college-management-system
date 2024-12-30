@@ -8,7 +8,9 @@ bp=Blueprint("dept",__name__,url_prefix="/dept")
 @login_required('staff','admin')
 def department():
     try:
-        dept=db.session.execute(db.select(Dept)).scalars()
+        page=request.args.get('page',1,type=int)
+        per_page=10
+        dept=Dept.query.paginate(page=page,per_page=per_page)
     except:
         flash("Sorry data cannot fetch")
     return render_template("dept.html",depts=dept)

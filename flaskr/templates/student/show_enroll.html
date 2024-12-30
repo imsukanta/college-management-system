@@ -1,0 +1,39 @@
+{% extends "student_dashboard.html" %}
+{% block title %}Show Enroll{% endblock title %}
+{% block studentcontent %}
+{% if g.student.enrollment %}
+{% for enrollment in g.student.enrollment %}
+
+    <div class="overflow-x-auto my-8">
+        <div class="container p-2 text-xl font-bold">Enrolled Course (Semester - {{enrollment.semester.sem}})</div>
+        <table class="md:min-w-full w-full table-fixed md:table-fixed bg-white border border-gray-200 rounded-lg shadow-lg">
+            <!-- Table Head -->
+            <thead>
+                <tr class="bg-gray-200 text-gray-700 text-left uppercase text-sm">
+                    <th class="px-6 py-3 border-b">Course ID</th>
+                    <th class="px-6 py-3 border-b">Course Name</th>
+                    <th class="px-6 py-3 border-b">Status</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                {% for course in enrollment.course %}
+                <tr class="hover:bg-gray-100 text-sm">
+
+                    <td class=" px-6 py-2 border-b text-gray-700">{{course.course_id}}</td>
+                    <td class=" px-6 py-2 border-b text-gray-700">{{course.course_name}}</td>
+                    <td class=" px-6 py-2 border-b text-gray-700">{{enrollment.status}}</td>
+   
+                </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+{% endfor %}
+{% else %}
+<div class="container text-center text-xl">No Data Found</div>
+{% endif %}
+{% endblock studentcontent %}

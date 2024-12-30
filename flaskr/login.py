@@ -12,7 +12,7 @@ def load_user():
         g.user=db.session.execute(db.select(User).where(User.user_id==user_id)).scalar_one()
     else:
         g.user=None
-@bp.route("/",methods=['GET','POST'])
+@bp.route("/admin-login",methods=['GET','POST'])
 def user_login():
     if request.method=='POST':
         if request.form['username'] =="" and request.form['password']=="":
@@ -27,13 +27,15 @@ def user_login():
         else:
             session.clear()
             session['username']=user.user_id
+            flash("Successfully Login")
             return redirect(url_for('index.dashboard'))
     # print(g.user)
-    return render_template("login.html")
+    return render_template("login/admin_login.html")
 
 @bp.route('/logout')
 def logout():
     session.pop('username',None)
+    flash("Successfully Logout")
     return redirect(url_for('login.user_login'))
 
 # @bp.before_request
