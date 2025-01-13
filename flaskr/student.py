@@ -5,6 +5,7 @@ from flaskr import db
 from werkzeug.security import generate_password_hash
 from datetime import datetime
 import math
+import pandas as pd
 bp=Blueprint("student",__name__,url_prefix="/student")
 
 def due_fees(id):
@@ -21,9 +22,22 @@ def due_fees(id):
     fees_due = semester_fee * (current_semester - (start_semester - 1)) - fees_paid
     return max(fees_due, 0)
 
-@bp.route("/")
+@bp.route("/",methods=['POST','GET'])
 @login_required('staff','admin')
 def student_dashboard():
+    if request.method=="POST":
+        file=request.files.get('file')
+        if not file:
+            flash("File not choosen")
+            return redirect(url_for('student.student_dashboard'))
+        df=pd.read_excel(file)
+        if df.empty:
+            flash("File is empty")
+            return redirect(url_for('student.student_dashboard'))
+        for start in range(0,len(df)):
+            print(df.iloc[start].values)
+        print(df.to_string())
+
     page=request.args.get('page',1,type=int)
     per_page=10
     students=Student.query.paginate(page=page,per_page=per_page)
