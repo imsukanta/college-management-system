@@ -1,0 +1,49 @@
+{% extends "dashboard.html" %}
+{% block title %}Show Question{% endblock title %}
+{% block content %}
+    <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Show Question</h1>
+        <form action="#" method="POST" class="grid gap-4 md:grid-cols-2">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <!-- Name -->
+            <div>
+                <label for="exam_id" class="block text-sm font-medium text-gray-700">Exam Name</label>
+                <select id="exam_id" name="exam_id" required
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="{{question.exam.exam_id}}">{{question.exam.exam_name}}+{{question.exam.department.dept_name}}</option>
+                    {% for exam in exam %}
+                    <option value="{{exam.exam_id}}">{{exam.exam_name}}+{{exam.department.dept_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="question_name" class="block text-sm font-medium text-gray-700">Question</label>
+                <input value="{{question.question_text}}" type="text" id="question_name" name="question_name" maxlength="150" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="md:col-span-2">
+                <label for="options" class="block text-sm font-medium text-gray-700">Options("Option 1"|"Option 2"...)</label>
+                <textarea id="options" name="options" rows="3" maxlength="200" required
+                          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">{{question.options}}</textarea>
+            </div>
+            <div>
+                <label for="marks" class="block text-sm font-medium text-gray-700">Question Marks</label>
+                <input value="{{question.marks}}" type="number" id="marks" name="marks" maxlength="150" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="correct_answer" class="block text-sm font-medium text-gray-700">Correct Answer(1,2,3....)</label>
+                <input value="{{question.correct_answer}}" type="number" id="correct_answer" name="correct_answer" maxlength="150" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Submit Button -->
+            <div class="md:col-span-2 flex justify-end">
+                <button type="submit"
+                        class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+                    Update
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

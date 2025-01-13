@@ -1,0 +1,65 @@
+{% extends "student_dashboard.html" %}
+{% block title %}Student Dashboard{% endblock title %}
+{% block studentcontent %}
+
+<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center border-2 border-gray-200 rounded-2xl p-2">
+  <!-- Reusable Card Template -->
+  <a href="{{url_for('studentIndex.show_enroll_course')}}" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Course</span>
+  </a>
+  <a href="{{url_for('studentIndex.show_schedule')}}" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Schedule</span>
+  </a>
+  <a href="" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Assignment</span>
+  </a>
+  <a href="" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Marks</span>
+  </a>
+  <a href="" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Notifications</span>
+  </a>
+
+  <a href="" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Exam</span>
+  </a>
+  <a href="" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Library</span>
+  </a>
+  <a href="{{url_for('studentIndex.student_pay')}}" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Payment</span>
+  </a>
+  <a href="{{url_for('studentIndex.student_profile')}}" class="group w-[7rem] h-[9rem] flex flex-col items-center justify-center rounded-lg transition-all duration-300 hover:shadow-2xl hover:border hover:border-gray-300">
+    <div class="bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg rounded-xl p-6 transition-transform duration-300 w-[6rem] h-[6rem] flex items-center justify-center group-hover:scale-105">
+      <img src="{{ url_for('static', filename="images/open-book-icon.png") }}" alt="course Icon" class="w-12 h-12">
+    </div>
+    <span class="block mt-2 font-bold text-gray-800">Profile</span>
+  </a>
+
+</div>
+
+{% endblock studentcontent %}

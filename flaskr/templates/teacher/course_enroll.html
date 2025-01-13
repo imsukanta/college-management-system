@@ -1,0 +1,35 @@
+{% extends "teacher_base.html" %}
+{% block title %}Student Details{% endblock title %}
+{% block teachercontent %}
+<div class="container my-3 text-end">
+    <a class="px-4 py-2 bg-black rounded-lg text-white hover:bg-gray-400 hover:text-black space-x-2 radius-2" href="{{url_for('teacher.add_enroll')}}">Enroll Course</a>
+</div>
+    <div class="overflow-x-auto my-8">
+        <table class="md:min-w-full w-full table-fixed md:table-fixed bg-white border border-gray-200 rounded-lg shadow-lg">
+            <!-- Table Head -->
+            <thead>
+                <tr class="bg-gray-200 text-gray-700 text-left uppercase text-sm">
+                    <th class="px-6 py-3 border-b">#</th>
+                    <th class="px-6 py-3 border-b">Name</th>
+                    <th class="px-6 py-3 border-b">Email</th>
+                    <th class="px-6 py-3 border-b">Enroll Semester</th>
+                    <th class="px-6 py-3 border-b">Actions</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                 {% for enroll in enroll %}
+                <tr class="hover:bg-gray-100 text-sm">
+                    <td class=" px-6 py-2 border-b text-gray-700">{{enroll.id}}</td>
+                    <td class="truncate px-6 py-2 border-b text-gray-700"><a class="text-blue-900" href="">{{enroll.student.first_name}}</a></td>
+                    <td class=" px-6 py-2 border-b text-sm text-gray-700">{{enroll.student.email}}</td>
+                    <td class="truncate px-6 py-2 border-b text-gray-700">{{enroll.semester.name}}+{{enroll.semester.session.name}}</td>
+                    <td class="px-6 py-2 flex flex-col items-center space-y-1 md:flex-row border-b text-gray-700">
+                        <a href="{{url_for("teacher.show_course_enroll",id=enroll.id)}}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Show</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock teachercontent %}

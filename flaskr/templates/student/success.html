@@ -1,0 +1,23 @@
+{% extends "student_dashboard.html" %}
+{% block title %}Payment Success{% endblock title %}
+{% block studentcontent %}
+<div class="container mx-auto px-4 py-10 flex flex-col items-center justify-center">
+    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg shadow-lg max-w-lg text-center">
+        <h1 class="text-2xl md:text-3xl font-extrabold">🎉 Payment Successful! 🎉</h1>
+        <p class="mt-4 text-lg">Thank you for completing your payment.</p>
+        <p class="text-sm mt-2 text-gray-600">Your transaction has been verified successfully. You can now proceed with your activities.</p>
+        <div class="mt-6">
+            <a href="{{url_for('studentIndex.index')}}" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow-md transition duration-200">
+                Go to Dashboard
+            </a>
+            <a href="{{url_for('studentIndex.student_pay')}}" class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg shadow-md transition duration-200">
+                View Transactions
+            </a>
+        </div>
+    </div>
+    <div class="mt-8 text-gray-500 text-sm">
+        <p>If you have any queries, feel free to <a href="/contact" class="text-blue-500 hover:underline">contact us</a>.</p>
+    </div>
+</div>
+{% endblock studentcontent %}
+

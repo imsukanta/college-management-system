@@ -1,0 +1,66 @@
+{% extends "teacher_base.html" %}
+{% block title %}Teacher Profile{% endblock title %}
+{% block teachercontent %}
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg mt-10">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Teacher Profile</h1>
+    <!-- Profile Section -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full table-auto border-collapse border border-gray-200">
+        <tbody>
+          <!-- Name Row -->
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Employee Id</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.emp_id}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Name</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.name}}</td>
+          </tr>
+          <!-- Age Row -->
+          <tr class="bg-white border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">DOB</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.date_of_birth}}</td>
+          </tr>
+          <!-- Gender Row -->
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Gender</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.gender}}</td>
+          </tr>
+          <!-- Email Row -->
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Email</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.email}}</td>
+          </tr>
+          <!-- Phone Row -->
+          <tr class="bg-white border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Phone</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.mobile_no}}</td>
+          </tr>
+          <tr class="bg-white border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Address</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.address}}</td>
+          </tr>
+          <!-- Address Row -->
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Desgination</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.designation}}</td>
+          </tr>
+          <!-- Course Row -->
+          <tr class="bg-white border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Department Name</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.department.dept_name}}</td>
+          </tr>
+          <tr class="bg-white border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Qualification</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.qualification}}</td>
+          </tr>
+          <tr class="bg-white border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Year Of Experience</th>
+            <td class="px-6 py-3 text-gray-800">{{g.teacher.year_of_experience}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock teachercontent %}

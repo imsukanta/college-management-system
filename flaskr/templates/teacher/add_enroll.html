@@ -1,0 +1,40 @@
+{% extends "teacher_base.html" %}
+{% block title %}Student Details{% endblock title %}
+{% block teachercontent %}
+    <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Create Enrollment</span></h1>
+        <form action="#" method="POST" >
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Semester</label>
+                <select id="semester" name="semester" required
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Select Semester</option>
+                    {% for sem in sem %}
+                    <option value="{{sem.sem}}">{{sem.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2">Select Categories:</label>
+                <div class="space-y-3">
+                    {% for course in course %}
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="categories[]" value="{{course.id}}" class="form-checkbox text-blue-500">
+                        <span class="ml-2 text-gray-700">{{course.course_name}}({{course.semester}}+{{course.course_id}})</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="md:col-span-2 flex justify-end">
+                <button type="submit"
+                        class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock teachercontent %}

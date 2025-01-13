@@ -1,0 +1,47 @@
+{% extends "dashboard.html" %}
+{% block title %}Add Session{% endblock title %}
+{% block content %}
+    <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Update Session</h1>
+        <form action="#" method="POST" class="grid gap-4 md:grid-cols-2">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <!-- Name -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input value="{{sessionyear.name}}" type="text" id="name" name="name" maxlength="150" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <div>
+                <label for="start_date" class="block text-sm font-medium text-gray-700">Star Date</label>
+                <input value="{{sessionyear.start_date}}" type="date" id="start_date" name="start_date" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
+                <input value="{{sessionyear.end_date}}" type="date" id="end_date" name="end_date" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="status">
+                Status
+            </label>
+            <input  name="status" {% if sessionyear.is_active %}checked {% else %}{% endif %} id="status" value="true" type="checkbox" class="mr-2 leading-tight" />
+            <span class="text-gray-700 text-sm">Is active?</span>
+            </div>
+
+            <div class="md:col-span-2 space-x-3 flex justify-end">
+                <button type="submit"
+                        class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+                    Submit
+                </button>
+                <a href="{{url_for('sessionsem.delete_session',id=sessionyear.id)}}"
+                        class="px-6 py-2 bg-red-500 text-white font-semibold rounded-md shadow-sm hover:bg-red-600 focus:ring-2 focus:ring-red-300">
+                    Delete
+            </a>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

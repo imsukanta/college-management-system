@@ -1,0 +1,22 @@
+{% extends "dashboard.html" %}
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                <div class="p-4 bg-blue-100 rounded-lg shadow">
+                    <h3 class="font-semibold text-gray-800">Student</h3>
+                    <p class="text-sm text-gray-600">{% if student %}{{student}} {% else %} 0{% endif %}</p>
+                </div>
+                <div class="p-4 bg-green-100 rounded-lg shadow">
+                    <h3 class="font-semibold text-gray-800">User</h3>
+                    <p class="text-sm text-gray-600">{% if user %}{{user}} {% else %} 0 {% endif %}</p>
+                </div>
+                <div class="p-4 bg-yellow-100 rounded-lg shadow">
+                    <h3 class="font-semibold text-gray-800">Staff</h3>
+                    <p class="text-sm text-gray-600">{% if staff %}{{staff}} {% else %} 0 {% endif %}</p>
+                </div>
+                <div class="p-4 bg-red-100 rounded-lg shadow">
+                    <h3 class="font-semibold text-gray-800">Assignments</h3>
+                    <p class="text-sm text-gray-600">3 assignments pending</p>
+                </div>
+            </div>
+{% endblock content %}

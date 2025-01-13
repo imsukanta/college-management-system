@@ -1,0 +1,36 @@
+{% extends "dashboard.html" %}
+{% block title %}Search{% endblock title %}
+{% block content %}
+    <div class="mt-6 bg-white shadow-md rounded-lg p-4">
+      <h2 class="text-xl font-semibold text-gray-800">Search Results:</h2>
+      <div id="resultsContainer" class="mt-4 space-y-4">
+        <table class="md:min-w-full w-full table-fixed md:table-fixed bg-white border border-gray-200">
+            <!-- Table Head -->
+             {% if email %}
+            <thead>
+                <tr class="bg-gray-200 text-gray-700 text-left uppercase text-sm">
+                    <th class="px-6 py-3 border-b">Name</th>
+                    <th class="px-6 py-3 border-b">Email</th>
+                    <th class="px-6 py-3 border-b">Actions</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                <!-- Row 1 -->
+                 {% for email in email %}
+                <tr class="hover:bg-gray-100">
+                    <td class=" px-6 py-2 border-b text-gray-700">{{email.first_name}} {{email.last_name}}</td>
+                    <td class=" px-6 py-2 border-b text-gray-700">{{email.email}}</td>
+                    <td class="px-6 py-2 flex flex-col items-center space-y-1 md:flex-row border-b text-gray-700">
+                        <a href="{{url_for('student.show_profile',id=email.id)}}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Show</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% else %}
+            No Data Found
+            {% endif %}
+        </table>
+      </div>
+    </div>
+{% endblock content %}

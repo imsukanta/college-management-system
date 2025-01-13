@@ -1,0 +1,29 @@
+{% extends "dashboard.html" %}
+ {% block title %}Staff{% endblock title %} {% block content %}
+<div class="container my-3  md:mx-0">
+  <div class="font-bold text-md">Enter Your Name*</div>
+  <div>
+    <input
+      type="text"
+      class="p-1 rounded-md border-2 focus:ring-2 focus:ring-blue-500 focus:border-cyan-200 focus:outline-none"
+      placeholder="Name"
+    />
+  </div>
+  <div class="font-bold text-md">Enter Your Email*</div>
+  <div>
+    <input
+      type="Email"
+      class="p-1 rounded-md border-2 focus:ring-2 focus:ring-blue-500 focus:border-cyan-200 focus:outline-none"
+      placeholder="Email"
+    />
+  </div>
+  <div class="font-bold text-md">Enter Your Password*</div>
+  <div>
+    <input
+      type="password"
+      class="p-1 rounded-md border-2 focus:ring-2 focus:ring-blue-500 focus:border-cyan-200 focus:outline-none"
+      placeholder="Password"
+    />
+  </div>
+</div>
+{% endblock content %}

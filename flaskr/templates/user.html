@@ -1,0 +1,72 @@
+{% extends "dashboard.html" %}
+{% block title %}Staff{% endblock title %}
+{% block content %}
+<div class="container my-3 text-center">
+    <a class="px-4 py-2 bg-black rounded-lg text-white hover:bg-gray-400 hover:text-black space-x-2 radius-2" href="{{url_for('user.add_user')}}">Add User</a>
+</div>
+    <div class="overflow-x-auto my-8">
+        <table class="md:min-w-full w-full table-fixed md:table-fixed bg-white border border-gray-200 rounded-lg shadow-lg">
+            <!-- Table Head -->
+            <thead>
+                <tr class="bg-gray-200 text-gray-700 text-left uppercase text-sm">
+                    <th class="px-6 py-3 border-b">#</th>
+                    <th class="px-6 py-3 border-b">Name</th>
+                    <th class="px-6 py-3 border-b">Email</th>
+                    <th class="px-6 py-3 border-b">Type</th>
+                    <th class="px-6 py-3 border-b">Actions</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                <!-- Row 1 -->
+                 {% for user in users %}
+                <tr class="hover:bg-gray-100">
+                    <td class=" px-6 py-2 border-b text-gray-700">{{user.user_id}}</td>
+                    <td class="truncate px-6 py-2 border-b text-gray-700">{{user.name}}</td>
+                    <td class=" px-6 py-2 border-b text-gray-700">{{user.email}}</td>
+                    <td class="truncate px-6 py-2 border-b text-gray-700">{{user.user_type}}</td>
+                    <td class="px-6 py-2 flex flex-col items-center space-y-1 md:flex-row border-b text-gray-700">
+                        <a href="{{url_for('user.update_user',id=user.user_id) }}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Edit</a>
+                        <a href="{{url_for('user.delete_user',id=user.user_id) }}" class="bg-red-500 text-white px-3 py-1 rounded-md  hover:bg-red-600 ml-2">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- Row 2 -->
+                
+            </tbody>
+        </table>
+    </div>
+
+<div class="flex justify-center items-center mt-8 space-x-4">
+    <!-- Previous page link -->
+    {% if users.has_prev %}
+        <a class="px-2 py-1 bg-gray-800 text-white rounded-lg border-2 border-gray-700 hover:bg-gray-700 hover:text-gray-200 transition-colors" 
+           href="{{ url_for('user.user_dashboard', page=users.prev_num) }}">
+            Previous
+        </a>
+    {% else %}
+        <span class="px-2 py-1 bg-gray-300 text-gray-500 rounded-lg border-2 border-gray-200 cursor-not-allowed">
+            Previous
+        </span>
+    {% endif %}
+
+    <!-- Page numbers -->
+    <span class="text-lg font-semibold text-gray-700">
+        Page {{ users.page }} of {{ users.pages }}
+    </span>
+
+    <!-- Next page link -->
+    {% if users.has_next %}
+        <a class="px-2 py-1 bg-gray-800 text-white rounded-lg border-2 border-gray-700 hover:bg-gray-700 hover:text-gray-200 transition-colors" 
+           href="{{ url_for('user.user_dashboard', page=users.next_num) }}">
+            Next
+        </a>
+    {% else %}
+        <span class="px-2 py-1 bg-gray-300 text-gray-500 rounded-lg border-2 border-gray-200 cursor-not-allowed">
+            Next
+        </span>
+    {% endif %}
+</div>
+
+    
+{% endblock content %}

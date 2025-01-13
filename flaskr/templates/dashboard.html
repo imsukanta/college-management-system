@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block maincontent %}
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+<div id="sidebar"
+    class="fixed left-0 top-0 h-full w-[18rem] bg-[#1F2937] text-white font-bold transform -translate-x-full md:translate-x-0 transition-transform duration-300">
+    <div class="mt-4 px-4">
+        <h1 class="text-xl truncate">Welcome! {{g.user.name}}</h1>
+    </div>
+
+    <!-- Scrollable section -->
+    <ul class="mt-8 space-y-2 text-center p-2 h-[calc(100vh-6rem)] overflow-y-auto">
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a href="{{url_for('index.dashboard')}}">Dashboard</a>
+        </li>
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a  href="{{url_for('student.student_dashboard')}}">Student</a>
+        </li>
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a href="{{url_for('staff.staff_dashboard')}}">Staff</a>
+        </li>
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a href="{{url_for('user.user_dashboard')}}">User</a>
+        </li>
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a href="{{url_for('dept.department')}}">Department</a>
+        </li>
+        <li id="toggledrop" class="px-4 py-1 hover:bg-white hover:text-black rounded-md cursor-pointer">
+            Session
+        </li>
+        <div id="showdropdown" class="container hidden bg-gray-600 p-2 text-sm rounded-md">
+            <li class="px-4 ml-5 py-1 hover:bg-white hover:text-black rounded-md">
+                <a href="{{url_for('sessionsem.show_session')}}">Session</a>
+            </li>
+            <li class="px-4 ml-5 py-1 hover:bg-white hover:text-black rounded-md">
+                <a href="{{url_for('sessionsem.show_semester')}}">Semester</a>
+            </li>
+        </div>
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a href="{{url_for('course.dashboard_course')}}">Course</a>
+        </li>
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a href="{{url_for('enrollment.dashboard_enroll')}}">Enrollment</a>
+        </li>
+        <li class="px-4 py-1 hover:bg-white hover:text-black rounded-md">
+            <a href="{{url_for('schedule.schedule_dashboard')}}">Schedule</a>
+        </li>
+        <li id="toggledrop1" class="px-4 py-1 hover:bg-white hover:text-black rounded-md cursor-pointer">
+            Exam
+        </li>
+        <div id="showdropdown1" class="container hidden bg-gray-600 p-2 text-sm rounded-md">
+            <li class="px-4 ml-5 py-1 hover:bg-white hover:text-black rounded-md">
+                <a href="{{url_for('exam.exam_dashboard')}}">Conduct Exam</a>
+            </li>
+            <li class="px-4 ml-5 py-1 hover:bg-white hover:text-black rounded-md">
+                <a href="{{url_for('exam.question_dashboard')}}">Add Question</a>
+            </li>
+        </div>
+    </ul>
+
+    <!-- Logout button -->
+        <div class="mt-auto px-4 py-2 hover:bg-gray-700 bg-gray-900 text-white fixed bottom-0 left-0 w-[18rem]">
+            <a href="{{ url_for('login.logout') }}" class="flex items-center justify-center">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </a>
+        </div>
+</div>
+
+        <!-- Main Content -->
+        <div class="flex-1 ml-0 md:ml-[18rem]">
+            <!-- Navbar -->
+            <header class="sticky top-0 z-10 bg-[#1F2937] text-white flex justify-between p-4 items-center">
+                <!--<div class="font-bold text-lg">Responsive Dashboard</div> -->
+                <div class="flex justify-center w-max">
+                    
+                <form action="{{url_for('search.search_dashboard')}}" method="get" class="flex items-center space-x-2">
+                    <!-- Input Field -->
+                    <input
+                    type="text"
+                    name="search"
+                    placeholder="Search..."
+                    class="px-2 py-2 sm:w-96 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                    <!-- Search Button -->
+                    <button
+                    type="submit"
+                    class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                    >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menuToggle" class="text-white border-2 rounded-md px-2 py-1 hover:bg-white hover:text-black">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="p-4">
+                {% block content %}{% endblock content %}
+            </main>
+        </div>
+    </div>
+
+    </section>
+    <script>
+        // Sidebar Toggle for Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const toggledrop =document.getElementById('toggledrop')
+        const showdropdown =document.getElementById('showdropdown')
+        const toggledrop1 =document.getElementById('toggledrop1')
+        const showdropdown1 =document.getElementById('showdropdown1')
+
+        toggledrop.addEventListener('click',()=>{
+            showdropdown.classList.toggle('hidden');
+        });
+        toggledrop1.addEventListener('click',()=>{
+            showdropdown1.classList.toggle('hidden');
+        });
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+    </script>
+{% endblock maincontent %}

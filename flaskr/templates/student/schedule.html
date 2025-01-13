@@ -1,0 +1,33 @@
+{% extends "student_dashboard.html" %}
+{% block title %}Schedule{% endblock title %}
+{% block studentcontent %}
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold text-center mb-6">Class Routine</h1>
+  <div class="overflow-x-auto">
+    <table class="table-auto w-full border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-blue-500 text-white">
+          <th class="border border-gray-300 px-4 py-2">Time</th>
+          <th class="border border-gray-300 px-4 py-2">Monday</th>
+          <th class="border border-gray-300 px-4 py-2">Tuesday</th>
+          <th class="border border-gray-300 px-4 py-2">Wednesday</th>
+          <th class="border border-gray-300 px-4 py-2">Thursday</th>
+          <th class="border border-gray-300 px-4 py-2">Friday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-gray-100">
+          <td class="border border-gray-300 px-4 py-2 text-center">Monday</td>
+          <td class="border border-gray-300 px-4 py-2 text-center">09:00 AM</td>
+          <td class="border border-gray-300 px-4 py-2 text-center">Mathematics</td>
+          <td class="border border-gray-300 px-4 py-2 text-center">Computer Science</td>
+          <td class="border border-gray-300 px-4 py-2 text-center">Semester 1</td>
+          <td class="border border-gray-300 px-4 py-2 text-center">Dr. Smith</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock studentcontent %}

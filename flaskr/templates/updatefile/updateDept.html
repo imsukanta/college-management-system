@@ -1,0 +1,25 @@
+{% extends "dashboard.html" %} {% block title %}Staff{% endblock title %} {%
+block content %}
+<div class="container md:w-[25rem] md:mx-[18rem]">
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+      Name Department
+    </label>
+    <input name="deptname"
+      class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      id="username"
+      type="text"
+      value="{{dept.dept_name}}"
+      placeholder="Enter the name of department.."
+    />
+  </div>
+  <div
+    class="text-center px-2 py-1 bg-blue-900 text-white rounded-md hover:bg-blue-950"
+  >
+    <button type="submit">Submit</button>
+  </div>
+  </form>
+</div>
+{% endblock content %}

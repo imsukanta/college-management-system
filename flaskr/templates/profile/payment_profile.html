@@ -1,0 +1,78 @@
+{% extends "dashboard.html" %}
+{% block title %}
+Payment Details
+{% endblock title %}
+{% block content %}
+  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg">
+    <div class="mt-6 overflow-x-auto">
+      <table class="min-w-full table-auto border-collapse border border-gray-200">
+        <tbody>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Name</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.student.first_name}} {{payment.student.last_name}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Semester</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.semester.name}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Amount Pay</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.ammount_pay}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Mode Of Payment</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.mode_of_payment}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Pay ID</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.pay_id}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Order ID</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.order_id}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Signature</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.signature}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Status</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.status}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Created At</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.created_at}}</td>
+          </tr>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-6 py-3 text-gray-600 font-medium">Is Verified</th>
+            <td class="px-6 py-3 text-gray-800">{{payment.is_verified}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% if not payment.is_verified %}
+<div>
+    <form method="post">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmation">
+                Verify
+            </label>
+            <input name="confirmation" id="confirmation" value="true" type="checkbox" class="mr-2 leading-tight" />
+            <span class="text-gray-700 text-sm">Is active?</span>
+        </div>
+            <div class="md:col-span-2 flex justify-end">
+                <button type="submit"
+                        class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+                    Verify
+                </button>
+  
+            </div>
+            </form>
+</div>
+{% else %}
+
+{% endif %}
+
+{% endblock content %}

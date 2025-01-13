@@ -1,0 +1,67 @@
+{% extends "dashboard.html" %}
+{% block title %}Student Payment{% endblock title %}
+{% block content %}
+<div class="container my-3 flex justify-between items-center">
+    <h1 class="text-lg font-bold">{{student.first_name}} {{student.last_name}}</h1>
+    <h1 class="text-lg font-bold">Total Fees + Due = {{fees_due}}</h1>
+    <a href="{{url_for('student.add_payment',id=student.id)}}" class="px-4 py-2 bg-black rounded-lg text-white hover:bg-gray-400 hover:text-black space-x-2 radius-2">Pay Fees</a>
+</div>
+    <div class="overflow-x-auto my-8">
+        <table class="md:min-w-full w-full table-fixed md:table-fixed bg-white border border-gray-200 rounded-lg shadow-lg">
+            <thead>
+                <tr class="bg-gray-200 text-gray-700 text-left uppercase text-sm">
+                    <th class="px-6 py-3 border-b">#</th>
+                    <th class="px-6 py-3 border-b">Semester Name</th>
+                    <th class="px-6 py-3 border-b">Ammount Pay</th>
+                    <th class="px-6 py-3 border-b">Status</th>
+                    <th class="px-6 py-3 border-b">Created At</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                 {% for payment in payment %}
+                <tr class="hover:bg-gray-100 text-sm">
+                    <td class=" px-6 py-2 border-b text-gray-700"> {{payment.payment_id}} </td>
+                    <td class="truncate px-6 py-2 border-b text-gray-700">  <a class="text-blue-900" href="{{url_for('student.payment_details',id=student.id,pay_id=payment.payment_id)}}">Semester{{payment.semester.sem}}({{payment.semester.session.name}})</a></td>
+                    <td class="truncate px-6 py-2 border-b text-gray-700">  <a class="text-blue-900" href="">{{payment.ammount_pay}}</a></td>
+                    <td class=" px-6 py-2 border-b"> {% if payment.is_verified %}<span class="text-green-500">Verfiy</span> {% else %}<span class="text-red-600">Not Verfiy</span>{% endif %} </td>
+                    <td class=" px-6 py-2 border-b text-gray-700"> {{payment.created_at}} </td>
+                    
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+
+<div class="flex justify-center items-center mt-8 space-x-4">
+    <!-- Previous page link -->
+    {% if payment.has_prev %}
+        <a class="px-2 py-1 bg-gray-800 text-white rounded-lg border-2 border-gray-700 hover:bg-gray-700 hover:text-gray-200 transition-colors" 
+           href="{{ url_for('student.show_payment', page=payment.prev_num,id=student.id) }}">
+            Previous
+        </a>
+    {% else %}
+        <span class="px-2 py-1 bg-gray-300 text-gray-500 rounded-lg border-2 border-gray-200 cursor-not-allowed">
+            Previous
+        </span>
+    {% endif %}
+
+    <!-- Page numbers -->
+    <span class="text-lg font-semibold text-gray-700">
+        Page {{ payment.page }} of {{ payment.pages }}
+    </span>
+
+    <!-- Next page link -->
+    {% if payment.has_next %}
+        <a class="px-2 py-1 bg-gray-800 text-white rounded-lg border-2 border-gray-700 hover:bg-gray-700 hover:text-gray-200 transition-colors" 
+           href="{{ url_for('student.show_payment', page=payment.next_num,id=student.id) }}">
+            Next
+        </a>
+    {% else %}
+        <span class="px-2 py-1 bg-gray-300 text-gray-500 rounded-lg border-2 border-gray-200 cursor-not-allowed">
+            Next
+        </span>
+    {% endif %}
+</div>
+{% endblock content %}

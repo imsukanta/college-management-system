@@ -1,0 +1,65 @@
+{% extends "student_dashboard.html" %}
+{% block title %}Exam{% endblock title %}
+{% block studentcontent %}
+<div class="bg-gray-100 h-screen flex items-center justify-center">
+
+  <div class="w-full max-w-3xl bg-white rounded-lg shadow-lg p-6">
+    <!-- Header Section -->
+    <div class="flex items-center justify-between border-b pb-4 mb-4">
+      <h1 class="text-2xl font-bold text-gray-800">Exam: Civil Engineering Basics</h1>
+      <div id="timer" class="text-xl font-semibold text-red-600">Time Left: 10:00</div>
+    </div>
+
+    <!-- Question Section -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-700 mb-2">Question 1: What is the unit of force?</h2>
+      <div class="space-y-2">
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="option" value="option1" class="w-5 h-5 text-blue-500">
+          <span class="text-gray-700">A. Newton</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="option" value="option2" class="w-5 h-5 text-blue-500">
+          <span class="text-gray-700">B. Joule</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="option" value="option3" class="w-5 h-5 text-blue-500">
+          <span class="text-gray-700">C. Pascal</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="option" value="option4" class="w-5 h-5 text-blue-500">
+          <span class="text-gray-700">D. Watt</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="mt-6 flex justify-between items-center">
+      <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg">Previous</button>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">Next</button>
+    </div>
+  </div>
+</div>
+  <script>
+    let data=[]
+    let timerElement = document.getElementById('timer');
+    let totalTime = 10 * 60;
+    function startTimer() {
+      const interval = setInterval(() => {
+        const minutes = Math.floor(totalTime / 60);
+        const seconds = totalTime % 60;
+
+        timerElement.textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+        if (totalTime <= 0) {
+          clearInterval(interval);
+          timerElement.textContent = "Time's Up!";
+        }
+
+        totalTime--;
+      }, 1000);
+    }
+
+    startTimer();
+  </script>
+{% endblock studentcontent %}
