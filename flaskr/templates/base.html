@@ -7,15 +7,24 @@
     <link href="{{url_for('static',filename="/css/output.css")}}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <title>{% block title %}{% endblock title %}</title>
+        <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+        }
+        </style>
 </head>
 
-<body>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
     {% block maincontent %}{% endblock maincontent %}
             {% with messages=get_flashed_messages(with_categories=True) %}
 {% if messages %}
       {% for category,message in messages %}
-        <div id="alertBox" class="fixed md:bottom-[1rem] md:right-[20rem] bottom-[1rem] left-[2rem] flex items-center justify-between bg-blue-500 text-white px-4 py-3 rounded-md shadow-md w-80 ">
+        <div id="alertBox" class="fixed z-50 md:bottom-[1rem] md:right-[20rem] bottom-[1rem] left-[2rem] flex items-center justify-between bg-blue-500 text-white px-4 py-3 rounded-md shadow-md w-80 ">
         <div>
             <p class="text-sm">{{message}}</p>
         </div>

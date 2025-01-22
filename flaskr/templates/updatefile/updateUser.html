@@ -17,14 +17,14 @@
             <input value="{{user.email}}" name="email" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="Email" placeholder="Enter the head of department.." />
         </div>
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="depttype">
-                User Type*
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="role">
+                User Type
             </label>
-            <select name="user_types" id="user_types" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="{{user.user_type}}">{{user.user_type}}</option>
-                <option value="admin">Admin</option>
-                <option value="staff">Staff</option>
-                <option value="finance">Finance</option>
+            <select name="role" id="role" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="{{user.role.id}}">{{user.role.name}}</option>
+                {% for role in new_role %}
+                <option value="{{role.id}}">{{role.name}}</option>
+                {% endfor %}
             </select>
         </div>
                 <div class="mb-4">

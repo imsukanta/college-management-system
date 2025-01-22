@@ -1,16 +1,38 @@
 from flask import Blueprint,render_template,flash,redirect,url_for,g,request,current_app
 from flaskr.student_login import login_student_required
-from flaskr.models import Enrollment,Schedule,Payment,Exam
+from flaskr.models import Session,Schedule,Payment,Exam,Student
 import razorpay
 from flaskr import csrf,db
 from flaskr.student import due_fees
+from werkzeug.security import check_password_hash,generate_password_hash
 bp=Blueprint("studentIndex",__name__,url_prefix="/student-dashboard")
 
 
-@bp.route("/")
+@bp.route("/",methods=['POST','GET'])
 @login_student_required
 def index():
-    return render_template('student/body.html')
+    session=Session.query.filter_by(is_active=True).first()
+    if request.method=='POST':
+        old_password=request.form['old_password']
+        new_password=request.form['new_password']
+        confirm_password=request.form['confirm_password']
+        if not check_password_hash(g.student.password,old_password):
+            flash("Old password is not matching")
+            return redirect(url_for('studentIndex.index'))
+        if new_password!=confirm_password:
+            flash('Password not match with confirm password')
+            return redirect(url_for('studentIndex.index'))
+        try:
+            student=Student.query.get(g.student.id)
+            student.password=generate_password_hash(confirm_password)
+            db.session.commit()
+            flash("Successfully changed password")
+            return redirect(url_for('studentIndex.index'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f"{e}")
+            return redirect(url_for('studentIndex.index'))
+    return render_template('student/body.html',session=session)
 
 @bp.route("/profile")
 @login_student_required

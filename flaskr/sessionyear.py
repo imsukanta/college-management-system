@@ -2,20 +2,20 @@ from flask import Blueprint,render_template,request,redirect,url_for,flash
 from flaskr.models import Session, Semester,Student,Enrollment,Schedule
 from datetime import datetime
 from flaskr import db
-from flaskr.login import login_required
+from flaskr.login import permission_required
 import math
 from sqlalchemy import desc,asc
 bp=Blueprint("sessionsem",__name__,url_prefix="/session-semester")
 #all is right
 @bp.route('/session')
-@login_required('admin')
+@permission_required('show_session')
 def show_session():
     page=request.args.get('page',1,type=int)
     per_page=10
     session=Session.query.paginate(page=page,per_page=per_page)
     return render_template('session_year.html',session=session)
 @bp.route('/semester')
-@login_required('admin')
+@permission_required('show_semester')
 def show_semester():
     page=request.args.get('page',1,type=int)
     per_page=10
@@ -24,7 +24,7 @@ def show_semester():
 
 #need to update
 @bp.route("/add-session",methods=['GET','POST'])
-@login_required('admin')
+@permission_required('add_session')
 def add_session():
     if request.method=="POST":
         name=request.form['name']
@@ -80,7 +80,7 @@ def add_session():
             return redirect(url_for('sessionsem.add_session'))
     return render_template('addfile/addSession.html')
 @bp.route("/update-session/<int:id>",methods=['GET','POST'])
-@login_required('admin')
+@permission_required('update_session')
 def update_session(id):
     sessionYear=db.session.execute(db.select(Session).where(Session.id==id)).scalar_one_or_none()
     if request.method=="POST":
@@ -99,7 +99,7 @@ def update_session(id):
             return redirect(url_for('sessionsem.show_session'))
     return render_template('updatefile/updateSession.html',sessionyear=sessionYear)
 @bp.route("/update-semester/<int:id>",methods=['GET','POST'])
-@login_required('admin')
+@permission_required('update_semester')
 def update_semester(id):
     semester=Semester.query.get(id)
     session=Session.query.filter_by(is_active=True).all()
@@ -114,7 +114,7 @@ def update_semester(id):
     return render_template('updatefile/updateSemester.html',session=session,semester=semester)
 
 @bp.route("/delete-session/<int:id>")
-@login_required('admin')
+@permission_required('delete_session')
 def delete_session(id):
     try:
         session=Session.query.get(id)
@@ -129,6 +129,7 @@ def delete_session(id):
     return redirect(url_for('sessionsem.show_session'))
 
 @bp.route("/active-even-sem")
+@permission_required('active_even_sem')
 def active_even_sem():
     session=Session.query.filter_by(is_active=True).first()
     semester=Semester.query.filter_by(session_id=session.id).all()
@@ -146,6 +147,7 @@ def active_even_sem():
     flash("All Done")
     return redirect(url_for('sessionsem.show_semester'))
 @bp.route("/active-odd-sem")
+@permission_required('active_odd_sem')
 def active_odd_sem():
     session=Session.query.filter_by(is_active=True).first()
     semester=Semester.query.filter_by(session_id=session.id).all()

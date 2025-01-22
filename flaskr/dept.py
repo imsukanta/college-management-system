@@ -1,11 +1,11 @@
 from flask import Blueprint,render_template,request,redirect,url_for,flash
 from flaskr.models import Dept
 from . import db
-from flaskr.login import login_required
+from flaskr.login import permission_required
 bp=Blueprint("dept",__name__,url_prefix="/dept")
 
 @bp.route("/")
-@login_required('staff','admin')
+@permission_required('show_department')
 def department():
     try:
         page=request.args.get('page',1,type=int)
@@ -16,7 +16,7 @@ def department():
     return render_template("dept.html",depts=dept)
 
 @bp.route("/adddept",methods=["POST","GET"])
-@login_required('admin')
+@permission_required('add_department')
 def add_dept():
     if request.method=="POST":
         if request.form["deptname"]!='':
@@ -32,7 +32,7 @@ def add_dept():
     
     return render_template("addfile/addDept.html")
 @bp.route('/update/<int:id>',methods=["POST","GET"])
-@login_required('admin')
+@permission_required('update_department')
 def update_dept(id):
     dept=db.get_or_404(Dept,id)
     if request.method=="POST":
@@ -46,7 +46,7 @@ def update_dept(id):
     return render_template('updatefile/updateDept.html',dept=dept)
 
 @bp.route("/delete-dept/<int:id>")
-@login_required('admin')
+@permission_required('delete_department')
 def delete_dept(id):
     try:
         dept=db.get_or_404(Dept,id)

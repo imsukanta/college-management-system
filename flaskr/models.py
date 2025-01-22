@@ -3,7 +3,7 @@ from sqlalchemy import Column,Integer,String,ForeignKey,Boolean,Enum,Date,DateTi
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from flaskr import db
-
+from werkzeug.security import generate_password_hash
 class Dept(db.Model):
     __tablename__="department"
     dept_id=db.Column(Integer,primary_key=True)
@@ -40,43 +40,67 @@ class User(db.Model):
     name=db.Column(String(100))
     email=db.Column(String(150),unique=True)
     password=db.Column(String(100))
-    user_type=db.Column(Enum('admin','staff','finance',name="user_types"),nullable=False)
     is_active=db.Column(Boolean,default=False)
+    role_id=db.Column(Integer,ForeignKey('role.id',ondelete='SET NULL'))
+    
+    role=relationship("Role",backref='users')
     exam=relationship("Exam",back_populates="user",cascade='all, delete-orphan')
 
+role_permission_table=db.Table(
+    "role_permission",
+    db.Column("role_id",Integer,ForeignKey('role.id',ondelete='CASCADE'),primary_key=True),
+    db.Column("permission_id",Integer,ForeignKey('permission.id',ondelete='CASCADE'),primary_key=True)
+)
 
+class Role(db.Model):
+    __tablename__='role'
+    id=db.Column(Integer,primary_key=True)
+    name=db.Column(String(100),unique=True)
+    description=db.Column(String(100))
+    permission=relationship("Permission",secondary=role_permission_table,backref='role')
+    
+class Permission(db.Model):
+    __tablename__='permission'
+    id=db.Column(Integer,primary_key=True)
+    name=db.Column(String(100),unique=True)
+
+    
 class Student(db.Model):
     __tablename__ = "student"
     id = db.Column(Integer, primary_key=True)
-    makaut_roll_no = db.Column(String(100),unique=True)
-    first_name = db.Column(String(100), nullable=False)
-    last_name = db.Column(String(100), nullable=False)
-    date_of_birth = db.Column(Date, nullable=False)
-    gender = db.Column(String(10), nullable=False)
-    permanent_address = db.Column(String(255), nullable=False)
-    current_address = db.Column(String(255))
+    university_reg_no = db.Column(String(100),unique=True,nullable=False)
+    university_roll_no = db.Column(String(100),unique=True,nullable=False)
+    name = db.Column(String(100), nullable=False)
+    email = db.Column(String(100), unique=True)
+    password = db.Column(String(100), nullable=False)
     contact_number = db.Column(Integer)
-    email = db.Column(String(100), unique=True, nullable=False)
-    nationality = db.Column(String(50), nullable=False)
-    emergency_contact_name = db.Column(String(100), nullable=False)
-    emergency_contact_number = db.Column(Integer)
-    previous_qualifications = db.Column(String(255))
+    alternative_contact_number = db.Column(Integer)
+    parent_contact_number=db.Column(Integer)
+    father_name=db.Column(String(100),nullable=False)
+    mother_name=db.Column(String(100),nullable=False)
+    domicile_state=db.Column(String(100),nullable=False)
+    permanent_address = db.Column(String(255), nullable=False)
+    date_of_birth = db.Column(Date, nullable=False)
+    blood_group=db.Column(String(50))
+    religion=db.Column(String(100))
+    caste=db.Column(String(100))
+    gender = db.Column(Enum("Male","Female"), nullable=False)
+    physically_challanged=db.Column(Enum("Yes",'No'))
+    pan_card_no=db.Column(String(100))
+    aadhar_card_no=db.Column(String(100))
+    total_fees=db.Column(Integer,nullable=False)
     department_id=db.Column(Integer,ForeignKey('department.dept_id'))
-    admission_date = db.Column(Date, nullable=False)
+    admission_date = db.Column(Date)
     admission_session=db.Column(Integer,ForeignKey("sessions.id"))
     current_session=db.Column(Integer,ForeignKey('sessions.id'))
     current_semester=db.Column(Integer)
     start_semester=db.Column(Integer)
-    total_fees=db.Column(Float,nullable=False)
-    mode_of_admission = db.Column(Enum("entrance_exam","direct_admission",name="mode_of_admission"),nullable=False)
-    password = db.Column(String(100), nullable=False)
     access_of_library=db.Column(Boolean,default=False)
     is_active=db.Column(Boolean,default=False)
     department=relationship("Dept",back_populates='student')
     admission_session_obj=relationship("Session",foreign_keys=[admission_session],backref='admitted_student')
     current_session_obj=relationship("Session",foreign_keys=[current_session],backref="current_students")
     enrollment=relationship("Enrollment",back_populates="student",cascade='all, delete-orphan')
-    # fees=relationship("Fees",back_populates='student',cascade='all, delete-orphan')
     payment=relationship("Payment",back_populates='student',cascade='all, delete-orphan')
     
 class Session(db.Model):

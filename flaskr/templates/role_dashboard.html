@@ -1,0 +1,33 @@
+{% extends "dashboard.html" %}
+{% block title %}Role{% endblock title %}
+{% block content %}
+<div class="container my-3 text-end">
+    <a class="px-4 py-2 bg-black rounded-lg text-white hover:bg-gray-400 hover:text-black space-x-2 radius-2" href="{{url_for('role.add_role')}}">Add Role</a>
+</div>
+    <div class="overflow-x-auto my-8">
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+            <!-- Table Head -->
+            <thead>
+                <tr class="bg-gray-200 text-gray-700 text-left uppercase text-sm">
+                    <th class="px-6 py-3 border-b">#</th>
+                    <th class="px-6 py-3 border-b">Role Name</th>
+                    <th class="px-6 py-3 border-b">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for role in role %}
+                <tr class="hover:bg-gray-100">
+                    <td class="px-6 py-2 border-b text-blue-900">{{role.id}}</td>
+                    <td class="px-6 py-2 border-b text-blue-900">{{role.name}}</td>
+                    <td class="px-6 py-2 flex flex-col md:flex-row items-center space-y-1 border-b text-gray-700">
+                        <a href="{{url_for('role.update_role',id=role.id)}}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Assign Permission</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- Row 2 -->
+                
+            </tbody>
+        </table>
+    </div>
+
+{% endblock content %}

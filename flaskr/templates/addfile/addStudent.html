@@ -5,15 +5,22 @@
         <h1 class="text-2xl font-bold text-gray-800 mb-6">Student Form <span class="text-sm">(Bear in mind password of staff is dob(yyyymmdd); like:20020227)</span></h1>
         <form action="#" method="POST" class="grid gap-4 md:grid-cols-2">
             <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-            <!-- Name -->
+            <!-- University Registration No. -->
             <div>
-                <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
-                <input type="text" id="first_name" name="first_name" maxlength="150" required
+                <label for="university_reg_no" class="block text-sm font-medium text-gray-700">University Registration No.</label>
+                <input type="number" id="university_reg_no" name="university_reg_no" maxlength="150" required
                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
+            <!-- University Roll No. -->
             <div>
-                <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                <input type="text" id="last_name" name="last_name" maxlength="150" required
+                <label for="university_roll_no" class="block text-sm font-medium text-gray-700">University Roll No.</label>
+                <input type="number" id="university_roll_no" name="university_roll_no" maxlength="150" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Name -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name" maxlength="150" required
                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
 
@@ -23,72 +30,105 @@
                 <input type="email" id="email" name="email" maxlength="150" required
                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
-
-            <!-- Mobile Number -->
-            <div>
-                <label for="mobile_no" class="block text-sm font-medium text-gray-700">Mobile Number</label>
-                <input type="number" id="mobile_no" name="mobile_no" required
-                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label for="emergency_contact_name" class="block text-sm font-medium text-gray-700">Emergency Contact Name</label>
-                <input type="text" id="emergency_contact_name" name="emergency_contact_name" required
-                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label for="emergency_contact_number" class="block text-sm font-medium text-gray-700">Emergency Contact Number</label>
-                <input type="number" id="emergency_contact_number" name="emergency_contact_number" required
-                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            <!-- Date of Birth -->
-            <div>
-                <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                <input type="date" id="date_of_birth" name="date_of_birth" required
-                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
-                <input type="text" id="nationality" name="nationality" required
-                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <!-- Address -->
-            <div class="md:col-span-2">
-                <label for="current_address" class="block text-sm font-medium text-gray-700">Current Address</label>
-                <textarea id="current_address" name="current_address" rows="3" maxlength="200" required
-                          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700" for="">Is current address and permanent address same</label>
-                <input type="checkbox" id="checkSame">
-            </div>
-            <div class="md:col-span-2">
-                <label for="permanent_address" class="block text-sm font-medium text-gray-700">Permanent Address</label>
-                <textarea id="permanent_address" name="permanent_address" rows="3" maxlength="200" required
-                          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
-            </div>
-
             <!-- Gender -->
             <div>
                 <label class="block text-sm font-medium text-gray-700">Gender</label>
                 <select id="gender" name="gender" required
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
             </div>
+            <!-- Date of Birth -->
             <div>
-                <label for="makaut_roll_no" class="block text-sm font-medium text-gray-700">Makaut Roll No</label>
-                <input type="number" id="makaut_roll_no" name="makaut_roll_no" required
+                <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" required
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Mobile Number -->
+            <div>
+                <label for="contact_no" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                <input type="number" id="contact_no" name="contact_no" required
                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
+            <!-- Alternative Contact Number -->
             <div>
-                <label for="previous_qualifications" class="block text-sm font-medium text-gray-700">Previous Qualification</label>
-                <input type="text" id="previous_qualifications" name="previous_qualifications" required
+                <label for="alternative_contact_number" class="block text-sm font-medium text-gray-700">Alternative Contact Number</label>
+                <input type="number" id="alternative_contact_number" name="alternative_contact_number"
                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
-
+            <!-- Father Name -->
+            <div>
+                <label for="father_name" class="block text-sm font-medium text-gray-700">Father Name</label>
+                <input type="text" id="father_name" name="father_name" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Mother Name -->
+            <div>
+                <label for="mother_name" class="block text-sm font-medium text-gray-700">Mother Name</label>
+                <input type="text" id="mother_name" name="mother_name" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- parent contact number -->
+            <div>
+                <label for="parent_contact_number" class="block text-sm font-medium text-gray-700">Parent Contact Number</label>
+                <input type="number" id="parent_contact_number" name="parent_contact_number" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Domicile state -->
+            <div>
+                <label for="domicile_state" class="block text-sm font-medium text-gray-700">Domicile State</label>
+                <input type="text" id="domicile_state" name="domicile_state" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Permanent address -->
+            <div class="md:col-span-2">
+                <label for="permanent_address" class="block text-sm font-medium text-gray-700">Permanent Address</label>
+                <textarea id="permanent_address" name="permanent_address" rows="3" maxlength="200" required
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+            <!-- Blood group -->
+            <div>
+                <label for="blood_group" class="block text-sm font-medium text-gray-700">Blood Group</label>
+                <input type="text" id="blood_group" name="blood_group"
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Religion group -->
+            <div>
+                <label for="religion" class="block text-sm font-medium text-gray-700">Religion</label>
+                <input type="text" id="religion" name="religion" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Caste group -->
+            <div>
+                <label for="caste" class="block text-sm font-medium text-gray-700">Caste</label>
+                <input type="text" id="caste" name="caste" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- physically_challanged -->
+                        <!-- Gender -->
+                        <div>
+                            <label for="physically_challanged" class="block text-sm font-medium text-gray-700">Physically Challenged</label>
+                            <select id="physically_challanged" name="physically_challanged" required
+                                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+            <!-- pan card no -->
+            <div>
+                <label for="pan_card_no" class="block text-sm font-medium text-gray-700">Pan Card No</label>
+                <input type="text" id="pan_card_no" name="pan_card_no"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- aadhar card no -->
+            <div>
+                <label for="aadhar_card_no" class="block text-sm font-medium text-gray-700">Aadhar Card No</label>
+                <input type="text" id="aadhar_card_no" name="aadhar_card_no"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
             <!-- Department -->
             <div>
                 <label class="block text-sm font-medium text-gray-700">Department</label>
@@ -101,17 +141,6 @@
                 </select>
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700">Department</label>
-                <select id="mode_of_admission" name="mode_of_admission" required
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    <option value="">Select Mode Of Admission</option>
-                    <option value="entrance_exam">Entrance Exam</option>
-                    <option value="direct_admission">Direct Admission</option>
-                </select>
-            </div>
-
-
-            <div>
                 <label for="admission_date" class="block text-sm font-medium text-gray-700">Admission Date</label>
                 <input type="date" id="admission_date" name="admission_date" required
                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
@@ -121,7 +150,7 @@
                 <input type="number" id="current_semester" name="current_semester" required
                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
-            <!-- Years of Experience -->
+            <!-- Total Fees -->
             <div>
                 <label for="total_fees" class="block text-sm font-medium text-gray-700">Total Fees</label>
                 <input type="number" id="total_fees" name="total_fees" required
@@ -151,21 +180,4 @@
             </div>
         </form>
     </div>
-
-<script>
-    const checkSame=document.getElementById("checkSame");
-    const current_address=document.getElementById("current_address").value;
-    const permanent_address=document.getElementById("permanent_address");
-    checkSame.addEventListener('click',()=>{
-            if (checkSame.checked) {
-                // Copy the current address to the permanent address and disable the field
-                permanent_address.value = current_address;
-                permanent_address.disabled = true;
-            } else {
-                // Enable the permanent address field and clear it
-                permanent_address.disabled = false;
-                permanent_address.value = "";
-            }
-    })
-</script>
 {% endblock content %}

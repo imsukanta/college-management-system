@@ -31,11 +31,15 @@ Student Profile
             <tbody>
                 <tr>
                     <td class="border border-gray-300 px-4 py-2">Full Name</td>
-                    <td class="border border-gray-300 px-4 py-2">{{student.first_name}} {{student.last_name}}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.name}}</td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-300 px-4 py-2">MAKAUT Roll No</td>
-                    <td class="border border-gray-300 px-4 py-2">{{student.makaut_roll_no}}</td>
+                    <td class="border border-gray-300 px-4 py-2">University Registration Number</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.university_reg_no}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">University Roll Number</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.university_roll_no}}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-4 py-2">Department</td>
@@ -50,20 +54,68 @@ Student Profile
                     <td class="border border-gray-300 px-4 py-2">{{student.gender}}</td>
                 </tr>
                 <tr>
+                    <td class="border border-gray-300 px-4 py-2">Father Name</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.father_name}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Mother Name</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.mother_name}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Parent Contact Number</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.parent_contact_number}}</td>
+                </tr>
+                <tr>
                     <td class="border border-gray-300 px-4 py-2">Contact</td>
                     <td class="border border-gray-300 px-4 py-2">{{student.contact_number}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Alternative Contact</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.alternative_contact_number}}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-4 py-2">Email</td>
                     <td class="border border-gray-300 px-4 py-2">{{student.email}}</td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-300 px-4 py-2">Permanent Address</td>
-                    <td class="border border-gray-300 px-4 py-2">{{student.permanent_address}}</td>
+                    <td class="border border-gray-300 px-4 py-2">Blood Group</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.blood_group}}</td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-300 px-4 py-2">Current Address</td>
-                    <td class="border border-gray-300 px-4 py-2">{{student.current_address}}</td>
+                    <td class="border border-gray-300 px-4 py-2">Religion</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.religion}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Caste</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.caste}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Physically Challenged</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.physically_challanged}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Pan Card Number</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.pan_card_no}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Aadhar Card Number</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.aadhar_card_no}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Start Semester</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.start_semester}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Current Semester</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.current_semester}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Domicile State</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.domicile_state}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Permanent Address</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.permanent_address}}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-4 py-2">Admission Date</td>
@@ -74,20 +126,20 @@ Student Profile
                     <td class="border border-gray-300 px-4 py-2">{{student.admission_session_obj.name}}</td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-300 px-4 py-2">Mode of Admission</td>
-                    <td class="border border-gray-300 px-4 py-2">{{student.mode_of_admission}}</td>
+                    <td class="border border-gray-300 px-4 py-2">Access of Library</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.access_of_library}}</td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-300 px-4 py-2">Emergency Contact Name</td>
-                    <td class="border border-gray-300 px-4 py-2">{{student.emergency_contact_name}}</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-4 py-2">Emergency Contact</td>
-                    <td class="border border-gray-300 px-4 py-2">{{student.emergency_contact_number}}</td>
+                    <td class="border border-gray-300 px-4 py-2">Active Status</td>
+                    <td class="border border-gray-300 px-4 py-2">{{student.is_active}}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-4 py-2">Total Fees</td>
                     <td class="border border-gray-300 px-4 py-2">₹ {{student.total_fees}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">Fees Paid</td>
+                    <td class="border border-gray-300 px-4 py-2">₹ {{fee_pay}}</td>
                 </tr>
             </tbody>
         </table>

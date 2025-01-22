@@ -1,0 +1,55 @@
+{% extends "dashboard.html" %}
+{% block title %}Update Role{% endblock title %}
+{% block content %}
+    <div class="max-w-full mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Update Role</h1>
+        <form action="#" method="POST" class="grid grid-cols-1 gap-4 md:grid-cols-2 sm:grid-cols-1">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <!-- Name -->
+            <div>
+                <label for="role_name" class="block text-sm font-medium text-gray-700">Role Name</label>
+                <input value="{{role.name}}" type="text" id="role_name" name="role_name" maxlength="150" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Role Description -->
+            <div>
+                <label for="role_desc" class="block text-sm font-medium text-gray-700">Role Description</label>
+                <input value="{{role.description}}" type="text" id="role_desc" name="role_desc" maxlength="150" required
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="permit" class="block text-sm font-medium text-gray-700">Permission</label>
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full border-collapse border border-gray-300">
+                        <thead>
+                            <tr class="bg-blue-500 text-white">
+                                <th class="border border-gray-300 px-4 py-2 text-left">Field</th>
+                                <th class="border border-gray-300 px-4 py-2 text-left">Checked</th>
+                            </tr>
+                        </thead>
+                        <tbody class="overflow-y-auto" style="max-height: 200px; display:block;">
+                            {% for permission in permission %}
+                            <tr>
+                                <td class="border border-gray-300 px-4 py-2">{{permission.name}}</td>
+                                <td class="border border-gray-300 px-4 py-2"><input type="checkbox" name="permit" {% if permission in role.permission %}checked{% endif %} value="{{permission.id}}" id="perm-{{ permission.id }}"></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="md:col-span-2 flex justify-end space-x-3">
+                <button type="submit"
+                        class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+                    Submit
+                </button>
+                <a href="{{url_for('role.delete_role',id=role.id)}}"
+                        class="px-6 py-2 bg-red-500 text-white font-semibold rounded-md shadow-sm hover:bg-red-600 focus:ring-2 focus:ring-blue-300">
+                    Delete
+                </a>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

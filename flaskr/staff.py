@@ -4,7 +4,7 @@ from flaskr import db
 from datetime import datetime
 import random 
 import string
-from flaskr.login import login_required
+from flaskr.login import permission_required
 from werkzeug.security import generate_password_hash
 bp=Blueprint('staff',__name__,url_prefix='/staff')
 
@@ -15,7 +15,7 @@ def generate_employee_id(prefix="MIT", length=6):
     return employee_id
 
 @bp.route("/")
-@login_required('admin')
+@permission_required('staff_dashboard_show')
 def staff_dashboard():
     page=request.args.get('page',1,type=int)
     per_page=10
@@ -23,7 +23,7 @@ def staff_dashboard():
     return render_template('staff.html',staff=staff)
 
 @bp.route('/add-staff',methods=['POST','GET'])
-@login_required('admin')
+@permission_required('add_staff')
 def add_staff():
     dept=db.session.execute(db.select(Dept)).scalars()
     if request.method=='POST':
@@ -56,7 +56,7 @@ def add_staff():
 
 #delete staff
 @bp.route('/delete/<int:id>')
-@login_required('admin')
+@permission_required('delete_staff')
 def delete_staff(id):
     try:
         db.session.execute(db.delete(Staff).where(Staff.staff_id==id))
@@ -66,7 +66,7 @@ def delete_staff(id):
         flash("Got Error")
     return redirect(url_for('staff.staff_dashboard'))
 @bp.route('/update/<int:id>',methods=['GET','POST'])
-@login_required('admin')
+@permission_required('update_staff')
 def update_staff(id):
     staff=db.session.execute(db.select(Staff).where(Staff.staff_id==id)).scalar_one_or_none()
     dept=db.session.execute(db.select(Dept)).scalars()
@@ -97,7 +97,7 @@ def update_staff(id):
     return render_template('updatefile/updateStaff.html',staff=staff,dept=dept)
 
 @bp.route('/show-staff/<int:id>')
-@login_required('admin')
+@permission_required('show_staff')
 def show_staff(id):
     try:
         staff=db.session.execute(db.select(Staff).where(Staff.staff_id==id)).scalar_one_or_none()

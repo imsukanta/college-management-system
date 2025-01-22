@@ -1,0 +1,102 @@
+{% extends "dashboard.html" %}
+{% block title %}Add Student{% endblock title %}
+{% block content %}
+    <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Student Form <span class="text-sm">(Bear in mind password of staff is dob(yyyymmdd); like:20020227)</span></h1>
+        <form action="#" method="POST" enctype="multipart/form-data" class="grid gap-4 md:grid-cols-2">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <!-- Father Name -->
+             <div>
+                <input name="file" type="file" class="text-sm">
+             </div>
+            <div>
+                <label for="father_name" class="block text-sm font-medium text-gray-700">Father Name</label>
+                <input type="text" id="father_name" name="father_name"
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Mother Name -->
+            <div>
+                <label for="mother_name" class="block text-sm font-medium text-gray-700">Mother Name</label>
+                <input type="text" id="mother_name" name="mother_name"
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Domicile state -->
+            <div>
+                <label for="domicile_state" class="block text-sm font-medium text-gray-700">Domicile State</label>
+                <input type="text" id="domicile_state" name="domicile_state"
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Permanent address -->
+            <div class="md:col-span-2">
+                <label for="permanent_address" class="block text-sm font-medium text-gray-700">Permanent Address</label>
+                <textarea id="permanent_address" name="permanent_address" rows="3" maxlength="200"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+            <!-- Blood group -->
+            <!-- Religion group -->
+            <!-- physically_challanged -->
+                        <!-- Gender -->
+            <!-- pan card no -->
+            <div>
+                <label for="pan_card_no" class="block text-sm font-medium text-gray-700">Pan Card No</label>
+                <input type="text" id="pan_card_no" name="pan_card_no"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- aadhar card no -->
+            <div>
+                <label for="aadhar_card_no" class="block text-sm font-medium text-gray-700">Aadhar Card No</label>
+                <input type="text" id="aadhar_card_no" name="aadhar_card_no"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Department -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Department</label>
+                <select id="designation" name="department"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Select Department</option>
+                    {% for dept in dept %}
+                    <option value="{{dept.dept_id}}">{{dept.dept_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="admission_date" class="block text-sm font-medium text-gray-700">Admission Date</label>
+                <input type="date" id="admission_date" name="admission_date"
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Current Semester</label>
+                <input type="number" id="current_semester" name="current_semester"
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <!-- Total Fees -->
+            <div>
+                <label for="total_fees" class="block text-sm font-medium text-gray-700">Total Fees</label>
+                <input type="number" id="total_fees" name="total_fees"
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="access_of_library">
+                Access Of Library
+            </label>
+            <input name="access_of_library" id="access_of_library" value="true" type="checkbox" class="mr-2 leading-tight" />
+            <span class="text-gray-700 text-sm">Is active?</span>
+        </div>
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmation">
+                Confirmation
+            </label>
+            <input name="confirmation" id="confirmation" value="true" type="checkbox" class="mr-2 leading-tight" />
+            <span class="text-gray-700 text-sm">Is active?</span>
+        </div>
+
+            <!-- Submit Button -->
+            <div class="md:col-span-2 flex justify-end">
+                <button type="submit"
+                        class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
